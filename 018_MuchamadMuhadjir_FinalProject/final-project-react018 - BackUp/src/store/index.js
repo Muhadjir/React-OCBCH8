@@ -22,11 +22,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 userOne:action.payload
             }
-        case 'EMPTY_ONE':
-            return {
-                ...state,
-                userOne: {}
-            }
         default:
             return state
     }

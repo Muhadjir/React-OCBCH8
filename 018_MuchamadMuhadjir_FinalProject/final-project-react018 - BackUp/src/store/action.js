@@ -17,7 +17,6 @@ export function getWan(keys){
         headers: { 'Content-Type': 'application/json'},
     }
     return (dispatch) =>{
-        console.log(keys)
         fetch(`${base_url}/keys/`+keys, request)
         .then((response) => response.json())
         .then((data) => dispatch({
@@ -45,9 +44,6 @@ export function postData(keys, first, last){
             if(response.status === 400){
                 swal("ERROR", "Key is already exist", "error")
             }
-            else if(response.status === 201){
-                swal("POST Success", "Successful POST", "success")
-            }
         })
         .then(() => dispatch(getAll()))
     }
@@ -71,9 +67,6 @@ export function updateData(keys, first, last){
             if(response.status === 400){
                 swal("ERROR", "Key doesn't exist", "error")
             }
-            else if(response.status === 200){
-                swal("UPDATE Success", "Successful UPDATE", "success")
-            }
         })
         .then(() => dispatch(getAll()))
     }
@@ -88,14 +81,7 @@ export function deleteData(keys){
     // console.log('Cek ID'+keys)
     return (dispatch) =>{
         // console.log(dispatch)
-        fetch(`${base_url}/keys/`+keys, request)
-        .then((response) => {
-            // console.log(response)
-            if(response.status === 200){
-                swal("DELETE Success", "Successful DELETE", "success")
-            }
-        })
-        .then(() => dispatch(getAll()))
+        fetch(`${base_url}/keys/`+keys, request).then(() => dispatch(getAll()))
         // fetch(`${base_url}/keys/`+keys, request).then(res => console.log(res))
     }
 }
